@@ -7,6 +7,7 @@ else:
 #RF Impute
 #NOTE: Later this part should become a independent package so that we should import it directly
 sys.path.insert(0,"../utilities/imputation")
+sys.path.insert(0,"../../utilities/imputation")
 import rfimpute
 
 from enum import Enum

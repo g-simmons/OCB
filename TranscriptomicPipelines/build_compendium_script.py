@@ -32,7 +32,7 @@ if __name__ == "__main__":
     transcriptome_pipeline.parallel_engine.parameters.parameters_SLURM.shell_script_path = unique_id + "_job.sh"
     #tmp_t_parameters = t_parameters.TranscriptomicParameters(transcriptome_pipeline)
     transcriptome_pipeline.parameter_set.s_data_retrieval_parameters_sra_run_info_path = unique_id + '_sra_run_info.csv'
-    
+
     transcriptome_pipeline.parameter_set.s_gene_mapping_parameters_data_matrix_table_path = unique_id + '_SequencingDataMatrix.csv'
     transcriptome_pipeline.parameter_set.s_gene_mapping_parameters_gene_mapping_table_path = unique_id + '_SequencingGeneMappingTable.csv'
     
