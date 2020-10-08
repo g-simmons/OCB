@@ -606,9 +606,10 @@ class SequencingExtractionWorker:
         force_par = self.sratool_parameters.prefetch_par_force
         force = self.sratool_parameters.prefetch_force
         output_par = self.sratool_parameters.prefetch_par_output_file
-        output_file_name = self.parameters.working_file_dir + self.run
+        output_file_par = "-o"
+        output_file_name = self.parameters.working_file_dir + self.run + SequencingExtractionConstant.EXT_SRA.value
         output_dir_par = self.sratool_parameters.prefetch_par_output_dir
-        command = [executive_path, self.run, force_par, force, output_dir_par, self.parameters.working_file_dir]
+        command = [executive_path, self.run, force_par, force, output_file_par, output_file_name]
         return(command)
         
     def get_sratool_vdb_validate_command(self):

@@ -118,17 +118,39 @@ class SequencingRetrieval(s_module_template.SequencingSubModule):
         
     def download_srainfo(self):
         if self.parameters.skip_srainfo_download == False or self.check_existed_srainfo() == False:
-            Entrez.mail = self.parameters.entrez_mail
+            Entrez.email = self.parameters.entrez_mail
             df_list = []
+            id_list = []
             for id in self.get_s_query_id():
-            
-                handle = Entrez.efetch( id = id, 
+                print(Entrez.email)           
+                print(id)
+                print(SequencingRetrievalConstant.SRADB.value)
+                print(SequencingRetrievalConstant.RUNINFO.value)
+                print(SequencingRetrievalConstant.TEXT.value)
+                id_list.append(id)
+
+                if (len(id_list) > 100):
+                    handle = Entrez.efetch( id = id_list, 
                                         db = SequencingRetrievalConstant.SRADB.value, 
                                         rettype = SequencingRetrievalConstant.RUNINFO.value, 
                                         retmode = SequencingRetrievalConstant.TEXT.value)
+                
+                   
+                    df = pd.read_csv(handle)
+                    df_list.append(df)
+                    handle.close()
+                    id_list = []
+
+            if (len(id_list) > 0):
+                handle = Entrez.efetch( id = id_list, 
+                                        db = SequencingRetrievalConstant.SRADB.value, 
+                                        rettype = SequencingRetrievalConstant.RUNINFO.value, 
+                                        retmode = SequencingRetrievalConstant.TEXT.value)
+                   
                 df = pd.read_csv(handle)
                 df_list.append(df)
                 handle.close()
+
             self.sra_run_info = pd.concat(df_list)
             self.sra_run_info.to_csv(self.parameters.sra_run_info_path)
         else:
@@ -143,7 +165,7 @@ class SequencingRetrieval(s_module_template.SequencingSubModule):
             
     def download_fasta(self):
         if self.parameters.skip_fasta_download == False or self.check_existed_fasta() == False:
-            Entrez.mail = self.parameters.entrez_mail
+            Entrez.email = self.parameters.entrez_mail
             genome_id = self.get_t_gene_annotation().get_genome_id()
             with open(self.parameters.fasta_path, SequencingRetrievalConstant.WRITEMODE.value) as outfile:
                 for id in genome_id:

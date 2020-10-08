@@ -35,7 +35,7 @@ class TranscriptomicConstants:
         
         #       SRATool -- FastqDump
         self.s_sratool_parameters_fastqdump_par_gzip                                = '--gzip'
-        self.s_sratool_parameters_fastqdump_par_split3                              = '--split-3'
+        self.s_sratool_parameters_fastqdump_par_split3                              = '--split-e'
         self.s_sratool_parameters_fastqdump_par_output_dir                          = '-O'
 
         #   Bowtie2 (For alignment)==================================================
@@ -217,7 +217,7 @@ class TranscriptomicParameters:
         self.s_value_extraction_parameters_infer_experiment_record_file_ext         = '.infer_experiment_out'
         self.s_value_extraction_parameters_infer_experiment_threshold               = 0.9
         self.s_value_extraction_parameters_count_reads_file_ext                     = '.count_reads'
-        self.s_value_extraction_parameters_n_trial                                  = 10
+        self.s_value_extraction_parameters_n_trial                                  = 1
         self.s_value_extraction_parameters_skip_all                                 = True
         self.s_value_extraction_parameters_skip_fastq_dump                          = True
         self.s_value_extraction_parameters_skip_alignment                           = True
