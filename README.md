@@ -95,11 +95,11 @@ Required software have to be installed.
         <li>Tested in Python 3.6 </li>
     </ul>
     
-#### 2. sratoolkit 2.9.6 or later
+#### 2. sratoolkit 2.10.8 or later
 <h4>Please download and install sratoolkit by following the instructions in official website:<br>
 ( https://ncbi.github.io/sra-tools/install_config.html )</h4>
     <ul>
-        <li>Tested with sratoolkit 2.9.6 </li>
+        <li>Tested with sratoolkit 2.10.8 </li>
         <li>Please make sure the toolkit location is specified in your $PATH variable. To add the toolkit location:
             <ul>
                 <li>Linux: Use export command:
@@ -177,14 +177,29 @@ Required python packages have to be installed.
     <ul>
         <li>Tested with missingpy 0.2.0</li>
     </ul>
+	
+#### 6. scikit-learn(sklearn) (>= 0.20.1 and < 0.23.0)
+<h4>Please install scikit-learn by following the instructions in official website:<br>
+( https://pypi.org/project/scikit-learn/ )</h4>
+    <ul>
+        <li>Tested with scikit-learn(sklearn) 0.20.1</li>
+		<li>It will failed if you use the version >= 0.23.0</li>
+    </ul>
+	
+#### 7. matplotlib
+<h4>Please install matplotlib by following the instructions in official website:<br>
+( https://pypi.org/project/matplotlib/ )</h4>
+    <ul>
+        <li>Tested with matplotlib 3.0.2</li>
+    </ul>
     
 ### Testing after install and configure your computer
 <h4>After you added these path to PATH variable, you should be capable to run the following program in any directory:</h4>
 <ul>
-    <li>prefetch</li>
+    <li>prefetch (in sratoolkit)</li>
     <li>bowtie2</li>
-    <li>infer_experiment.py</li>
-    <li>htseq-count</li>
+    <li>infer_experiment.py (in RSeQC python package)</li>
+    <li>htseq-count (in HTSeq)</li>
 </ul>
 <h4>If you failed to run these four programs, please make sure that you located these four programs correctly and added the correct path to PATH variables before you run this pipeline.</h4>
 
