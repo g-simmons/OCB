@@ -1,13 +1,14 @@
 # AutoCPD: An automated omics compendium preparation pipeline
-
-## Introduction
 This toolkit can prepare the transcriptomic compendium, a normalized, format-consistent data matrix across samples from different studies, by collecting the samples in <a href="https://www.ncbi.nlm.nih.gov/sra">Sequencing Read Archive (SRA)</a> database given the topic you are interested in and your target species.
+![Figure 1. The entire transcriptomic compendium pipeline](https://github.com/bigghost2054/AutomatedOmicsCompendiumPreparationPipeline/blob/Pipeline_20200307/images/Figure1.png)
+Figure 1. The entire transcriptomic compendium pipeline
 
 ## Table of Contents
+TODO
 
 ## Getting Started
 
-### Installation
+### Installation (TODO: Rename repo?)
 Download the entire repository by:
 ```
 git clone https://github.com/bigghost2054/AutomatedOmicsCompendiumPreparationPipeline
@@ -22,7 +23,6 @@ python==3.6
 sra-tools==2.10.8
 bowtie==2.3.4
 ```
-
 #### Packages
 Make sure to install the following Python packages.
 ```
@@ -39,6 +39,26 @@ matplotlib==3.0.2
 This section includes the basic usage of the pipeline. For more detailed tutorial, please refer to ...
 
 #### Building Compendium
+
+##### Input
+In order to build a compendium, the script needs three input arguments: 1) The path to a sample list file (<a href="https://github.com/bigghost2054/AutomatedOmicsCompendiumPreparationPipeline/blob/Pipeline_20200307/TestFiles/SalmonellaExampleSampleList.csv">Example</a>), 2) the path to a gene annotation file (Example, TODO), and 3) a compendium name.
+
+##### Output
+This script will generate a directory with specified compendium name and many files in the directory. There are two outputs that are the most important:
+<ul>
+    <li>Normalized data matrix (Filename: '($compendium_name)_NormalizedDataMatrix.csv'): A table in csv format contains normalized gene expression profiles of all samples. Each row represent different genes and each column represent different samples.</li>
+    <li>Compendium saved in binary format (Filename: '($compendium_name)_projectfile.bin'): A python object contains the normalized gene expression table and recorded parameters. It can be used for optional validation.</li>
+</ul>
+
+##### Example
+The following example takes 
+```
+cd TranscriptomicPipelines
+python build_compendium.py
+    ../TestFiles/SalmonellaExampleSampleList.csv
+    ../TestFiles/GCF_000006945.2_ASM694v2
+    CompendiumExample
+```
 
 #### Validating Compendium
 
