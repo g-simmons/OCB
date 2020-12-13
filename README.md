@@ -7,7 +7,7 @@ Figure 1. The entire transcriptomic compendium pipeline
 TODO
 
 # Installation (TODO: Rename repo?)
-Download the entire repository by:
+Download the entire repository:
 ```
 git clone https://github.com/bigghost2054/AutomatedOmicsCompendiumPreparationPipeline
 ```
@@ -40,14 +40,14 @@ This section includes the basic usage of the pipeline. For more detailed tutoria
 
 ### Input
 In order to build a compendium, the script needs three input arguments
-- The path to a sample list file (<a href="https://github.com/bigghost2054/AutomatedOmicsCompendiumPreparationPipeline/blob/Pipeline_20200307/TestFiles/SalmonellaExampleSampleList.csv">Example</a>)
+- The path to a sample list file ((Example)[./TestFiles/SalmonellaExampleSampleList.csv])
 - The path to a gene annotation file (Example, TODO)
 - An output compendium name.
 
 ### Output
 This script will generate a directory with specified compendium name and many files in the directory. There are two outputs that are the most important:
-- Normalized data matrix (Filename: '($compendium_name)_NormalizedDataMatrix.csv'): A table in csv format contains normalized gene expression profiles of all samples. Each row represent different genes and each column represent different samples
-- Compendium saved in binary format (Filename: '($compendium_name)_projectfile.bin'): A python object contains the normalized gene expression table and recorded parameters. It can be used for optional validation.
+- Normalized data matrix: A CSV table that contains normalized gene expression profiles of all samples. Each row represents different genes and each column represents different samples. The output is stored in '($compendium_name)_NormalizedDataMatrix.csv'.
+- Compendium in binary format: A python object that contains the normalized gene expression table and the recorded parameters. It can be used for optional validation. The output is stored in '($compendium_name)_projectfile.bin'.
 
 ### Example
 ```
@@ -65,6 +65,7 @@ The pipeline provides several approaches to ensure the quality of the generated 
 - Supervised validation with correlation
 - Supervised validation with knowledge capture
 - Supervised validation with published data
+Please refer (step-by-step)[./STEP-BY-STEP.md] example and validation description for more information.
 
 # Future Work
 In the future, this toolkit will also be capable to process microarray dataset from GEO and ArrayExpress database.
