@@ -40,7 +40,7 @@ This section includes the basic usage of the pipeline. For more detailed tutoria
 
 ### Input
 In order to build a compendium, the script needs three input arguments
-- The path to a sample list file ((Example)[./TestFiles/SalmonellaExampleSampleList.csv])
+- The path to a sample list file ([Example](./TestFiles/SalmonellaExampleSampleList.csv))
 - The path to a gene annotation file (Example, TODO)
 - An output compendium name.
 
@@ -65,7 +65,7 @@ The pipeline provides several approaches to ensure the quality of the generated 
 - Supervised validation with correlation
 - Supervised validation with knowledge capture
 - Supervised validation with published data
-Please refer (step-by-step)[./STEP-BY-STEP.md] example and validation description for more information.
+Please refer [step-by-step](./STEP-BY-STEP.md) example and validation description for more information.
 
 # Future Work
 In the future, this toolkit will also be capable to process microarray dataset from GEO and ArrayExpress database.
