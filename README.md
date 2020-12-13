@@ -3,9 +3,6 @@ This toolkit can prepare the transcriptomic compendium, a normalized, format-con
 ![Figure 1. The entire transcriptomic compendium pipeline](https://github.com/bigghost2054/AutomatedOmicsCompendiumPreparationPipeline/blob/Pipeline_20200307/images/Figure1.png)
 Figure 1. The entire transcriptomic compendium pipeline
 
-## Table of Contents
-TODO
-
 # Installation (TODO: Rename repo?)
 Download the entire repository:
 ```
@@ -34,9 +31,9 @@ matplotlib==3.0.2
 ```
 
 # How to Use
-This section includes the basic usage of the pipeline. For more detailed tutorial, please refer to ...
+The pipeline consists of two components: Compendium construction and validation. The pipeline builds a compendium using the sample lists and gene annotations provided by users. Then it provides different validation approaches to validate the statistical siginificance and usefulness of the generated compendiums.
 
-## Building Compendium
+## Constructing Compendium
 
 ### Input
 In order to build a compendium, the script needs three input arguments
@@ -65,6 +62,7 @@ The pipeline provides several approaches to ensure the quality of the generated 
 - Supervised validation with correlation
 - Supervised validation with knowledge capture
 - Supervised validation with published data
+
 Please refer [step-by-step](./STEP-BY-STEP.md) example and validation description for more information.
 
 # Future Work
