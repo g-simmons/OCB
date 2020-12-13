@@ -6,24 +6,22 @@ Figure 1. The entire transcriptomic compendium pipeline
 ## Table of Contents
 TODO
 
-## Getting Started
-
-### Installation (TODO: Rename repo?)
+# Installation (TODO: Rename repo?)
 Download the entire repository by:
 ```
 git clone https://github.com/bigghost2054/AutomatedOmicsCompendiumPreparationPipeline
 ```
 
-### Dependencies
+## Dependencies
 
-#### Software
+### Software
 Make sure the following softwares are installed. We recommend to use Anaconda to ensure that they are installed correctly on $PATH.
 ```
 python==3.6
 sra-tools==2.10.8
 bowtie==2.3.4
 ```
-#### Packages
+### Packages
 Make sure to install the following Python packages.
 ```
 biopython==1.74
@@ -35,22 +33,22 @@ scikit-learn==0.20.1
 matplotlib==3.0.2
 ```
 
-### How to Use it
+# How to Use it
 This section includes the basic usage of the pipeline. For more detailed tutorial, please refer to ...
 
-#### Building Compendium
+## Building Compendium
 
-##### Input
+### Input
 In order to build a compendium, the script needs three input arguments: 1) The path to a sample list file (<a href="https://github.com/bigghost2054/AutomatedOmicsCompendiumPreparationPipeline/blob/Pipeline_20200307/TestFiles/SalmonellaExampleSampleList.csv">Example</a>), 2) the path to a gene annotation file (Example, TODO), and 3) a compendium name.
 
-##### Output
+### Output
 This script will generate a directory with specified compendium name and many files in the directory. There are two outputs that are the most important:
 <ul>
     <li>Normalized data matrix (Filename: '($compendium_name)_NormalizedDataMatrix.csv'): A table in csv format contains normalized gene expression profiles of all samples. Each row represent different genes and each column represent different samples.</li>
     <li>Compendium saved in binary format (Filename: '($compendium_name)_projectfile.bin'): A python object contains the normalized gene expression table and recorded parameters. It can be used for optional validation.</li>
 </ul>
 
-##### Example
+### Example
 The following example takes 
 ```
 cd TranscriptomicPipelines
@@ -60,15 +58,15 @@ python build_compendium.py
     CompendiumExample
 ```
 
-#### Validating Compendium
+## Validating Compendium
 
-## Future Work
+# Future Work
 In the future, this toolkit will also be capable to process microarray dataset from GEO and ArrayExpress database.
 
-## Citation
+# Citation
 
-## Authors
+# Authors
 
-## License
+# License
 
-## Acknowledgements
+# Acknowledgements
