@@ -33,23 +33,23 @@ scikit-learn==0.20.1
 matplotlib==3.0.2
 ```
 
-# How to Use it
+# How to Use
 This section includes the basic usage of the pipeline. For more detailed tutorial, please refer to ...
 
 ## Building Compendium
 
 ### Input
-In order to build a compendium, the script needs three input arguments: 1) The path to a sample list file (<a href="https://github.com/bigghost2054/AutomatedOmicsCompendiumPreparationPipeline/blob/Pipeline_20200307/TestFiles/SalmonellaExampleSampleList.csv">Example</a>), 2) the path to a gene annotation file (Example, TODO), and 3) a compendium name.
+In order to build a compendium, the script needs three input arguments
+- The path to a sample list file (<a href="https://github.com/bigghost2054/AutomatedOmicsCompendiumPreparationPipeline/blob/Pipeline_20200307/TestFiles/SalmonellaExampleSampleList.csv">Example</a>)
+- The path to a gene annotation file (Example, TODO)
+- An output compendium name.
 
 ### Output
 This script will generate a directory with specified compendium name and many files in the directory. There are two outputs that are the most important:
-<ul>
-    <li>Normalized data matrix (Filename: '($compendium_name)_NormalizedDataMatrix.csv'): A table in csv format contains normalized gene expression profiles of all samples. Each row represent different genes and each column represent different samples.</li>
-    <li>Compendium saved in binary format (Filename: '($compendium_name)_projectfile.bin'): A python object contains the normalized gene expression table and recorded parameters. It can be used for optional validation.</li>
-</ul>
+- Normalized data matrix (Filename: '($compendium_name)_NormalizedDataMatrix.csv'): A table in csv format contains normalized gene expression profiles of all samples. Each row represent different genes and each column represent different samples
+- Compendium saved in binary format (Filename: '($compendium_name)_projectfile.bin'): A python object contains the normalized gene expression table and recorded parameters. It can be used for optional validation.
 
 ### Example
-The following example takes 
 ```
 cd TranscriptomicPipelines
 python build_compendium.py
@@ -59,6 +59,12 @@ python build_compendium.py
 ```
 
 ## Validating Compendium
+The pipeline provides several approaches to ensure the quality of the generated compendiums:
+- Unsupervised validation
+- Unsupervised validation with data matrix
+- Supervised validation with correlation
+- Supervised validation with knowledge capture
+- Supervised validation with published data
 
 # Future Work
 In the future, this toolkit will also be capable to process microarray dataset from GEO and ArrayExpress database.
