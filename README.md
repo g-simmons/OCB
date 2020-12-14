@@ -1,7 +1,7 @@
 # AutoCPD: An automated omics compendium preparation pipeline
 This toolkit can prepare the transcriptomic compendium, a normalized, format-consistent data matrix across samples from different studies, by collecting the samples in <a href="https://www.ncbi.nlm.nih.gov/sra">Sequencing Read Archive (SRA)</a> database given the topic you are interested in and your target species.
 ![Figure 1. The entire transcriptomic compendium pipeline](https://github.com/bigghost2054/AutomatedOmicsCompendiumPreparationPipeline/blob/Pipeline_20200307/images/Figure1.png)
-Figure 1. The entire transcriptomic compendium pipeline
+Figure 1. The entire transcriptomic compendium pipeline. The process consists of 6 steps: **1**, Metadata preparation by extracting run information from SRA. **2**, Downloading sequencing data in FASTA format. **3**, Aligning sequences with reference genomes. **4**, Generating gene expression profile for each run given the corresponding sequence direction information (BED) and gene annotation. **5**, Normalizing gene expression profile table. **6**, Different approaches for validating the quality of the generated compendium.
 
 # Installation (TODO: Rename repo?)
 Download the entire repository:
@@ -31,12 +31,12 @@ matplotlib==3.0.2
 ```
 
 # How to Use
-The pipeline consists of two components: Compendium construction and validation. The pipeline builds a compendium using the sample lists and gene annotations provided by users. Then it provides different validation approaches to validate the statistical siginificance and usefulness of the generated compendiums.
+The pipeline consists of two components: Compendium construction and validation. The pipeline builds a compendium using the sample lists and gene annotations provided by users. Then it provides different validation approaches to validate the statistical siginificance and usefulness of the generated compendiums. For more detailed usage, see this [step-by-step tutorial](./STEP-BY-STEP.md).
 
 ## Constructing Compendium
 
 ### Input
-In order to build a compendium, the script needs three input arguments
+In order to build a compendium, the script needs three input arguments:
 - The path to a sample list file ([Example](./TestFiles/SalmonellaExampleSampleList.csv))
 - The path to a gene annotation file (Example, TODO)
 - An output compendium name.
@@ -63,7 +63,7 @@ The pipeline provides several approaches to ensure the quality of the generated 
 - Supervised validation with knowledge capture
 - Supervised validation with published data
 
-Please refer [step-by-step](./STEP-BY-STEP.md) example and validation description for more information.
+Please refer to [validation totorial](./VALIDATION.md).
 
 # Future Work
 In the future, this toolkit will also be capable to process microarray dataset from GEO and ArrayExpress database.
