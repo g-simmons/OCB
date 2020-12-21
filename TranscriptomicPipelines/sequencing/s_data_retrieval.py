@@ -1,4 +1,5 @@
-from Bio import Entrez
+import sys
+import Bio.Entrez as Entrez
 from enum import Enum
 
 import pandas as pd
@@ -82,12 +83,21 @@ class SequencingRetrieval(s_module_template.SequencingSubModule):
         
         self.configure_parameter_set(general_parameters = self.get_general_parameters())
         
+    def do_retrieve(self, platform_id_remove = [], series_id_remove = [], experiment_id_remove = [], run_id_remove = []):
+        print("metadata download")
+        self.download_metadata()
+        print("complete metadata")
+        self.complete_data_independent_metadata()
+        print("filter")
+        self.filter_entry(platform_id_remove, series_id_remove, experiment_id_remove, run_id_remove)
+        
+        
     def configure_parameter_set(self, general_parameters):
         parameter_set = self.get_parameter_set()
         
         self.parameters.entrez_mail             = parameter_set.s_data_retrieval_parameters_entrez_mail
         self.parameters.sra_run_info_path       = parameter_set.s_data_retrieval_parameters_sra_run_info_path
-        self.parameters.fasta_path              = parameter_set.s_data_retrieval_parameters_fasta_path
+        self.parameters.fasta_path              = self.get_t_gene_annotation().name + '.fasta'
         
         self.parameters.skip_srainfo_download   = parameter_set.s_data_retrieval_parameters_skip_srainfo_download
         self.parameters.skip_fasta_download     = parameter_set.s_data_retrieval_parameters_skip_fasta_download
@@ -104,21 +114,43 @@ class SequencingRetrieval(s_module_template.SequencingSubModule):
         #2. Download fasta files from NCBI genome and merge fasta files
         self.download_srainfo()
         self.download_fasta()
-        self.results.update_download_metadata(self.parameters.fasta_path)
+        self.results.update_download_metadata(self.get_t_gene_annotation().name + '.fasta')
         
     def download_srainfo(self):
         if self.parameters.skip_srainfo_download == False or self.check_existed_srainfo() == False:
-            Entrez.mail = self.parameters.entrez_mail
+            Entrez.email = self.parameters.entrez_mail
             df_list = []
+            id_list = []
             for id in self.get_s_query_id():
+                print(Entrez.email)           
                 print(id)
-                handle = Entrez.efetch( id = id, 
+                print(SequencingRetrievalConstant.SRADB.value)
+                print(SequencingRetrievalConstant.RUNINFO.value)
+                print(SequencingRetrievalConstant.TEXT.value)
+                id_list.append(id)
+
+                if (len(id_list) > 100):
+                    handle = Entrez.efetch( id = id_list, 
                                         db = SequencingRetrievalConstant.SRADB.value, 
                                         rettype = SequencingRetrievalConstant.RUNINFO.value, 
                                         retmode = SequencingRetrievalConstant.TEXT.value)
+                
+                   
+                    df = pd.read_csv(handle)
+                    df_list.append(df)
+                    handle.close()
+                    id_list = []
+
+            if (len(id_list) > 0):
+                handle = Entrez.efetch( id = id_list, 
+                                        db = SequencingRetrievalConstant.SRADB.value, 
+                                        rettype = SequencingRetrievalConstant.RUNINFO.value, 
+                                        retmode = SequencingRetrievalConstant.TEXT.value)
+                   
                 df = pd.read_csv(handle)
                 df_list.append(df)
                 handle.close()
+
             self.sra_run_info = pd.concat(df_list)
             self.sra_run_info.to_csv(self.parameters.sra_run_info_path)
         else:
@@ -133,7 +165,7 @@ class SequencingRetrieval(s_module_template.SequencingSubModule):
             
     def download_fasta(self):
         if self.parameters.skip_fasta_download == False or self.check_existed_fasta() == False:
-            Entrez.mail = self.parameters.entrez_mail
+            Entrez.email = self.parameters.entrez_mail
             genome_id = self.get_t_gene_annotation().get_genome_id()
             with open(self.parameters.fasta_path, SequencingRetrievalConstant.WRITEMODE.value) as outfile:
                 for id in genome_id:
@@ -149,7 +181,7 @@ class SequencingRetrieval(s_module_template.SequencingSubModule):
             pass
                                     
     def check_existed_fasta(self):
-        if not os.path.isfile(self.parameters.fasta_path):
+        if not os.path.isfile(self.get_t_gene_annotation().name + '.fasta'):
             return False
         else:
             return True

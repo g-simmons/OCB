@@ -174,7 +174,7 @@ class SequencingPipeline(s_module_template.SequencingModule):
         self.bowtie2_parameters.build_exe_file                 = parameter_set.s_bowtie2_parameters_build_exe_file
         self.bowtie2_parameters.build_nthreads                 = parameter_set.s_bowtie2_parameters_build_nthreads
         self.bowtie2_parameters.build_par_nthreads             = parameter_set.constants.s_bowtie2_parameters_build_par_nthreads
-        self.bowtie2_parameters.build_index_name               = parameter_set.s_bowtie2_parameters_build_index_name
+        #self.bowtie2_parameters.build_index_name               = parameter_set.s_bowtie2_parameters_build_index_name
         
         self.bowtie2_parameters.align_exe_file                 = parameter_set.s_bowtie2_parameters_align_exe_file
         self.bowtie2_parameters.align_par_index_name           = parameter_set.constants.s_bowtie2_parameters_align_par_index_name

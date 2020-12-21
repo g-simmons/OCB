@@ -1,72 +1,78 @@
+# AutoCPD: An automated omics compendium preparation pipeline
+This toolkit can prepare the transcriptomic compendium, a normalized, format-consistent data matrix across samples from different studies, by collecting the samples in <a href="https://www.ncbi.nlm.nih.gov/sra">Sequencing Read Archive (SRA)</a> database given the topic you are interested in and your target species.
+![Figure 1. The entire transcriptomic compendium pipeline](https://github.com/bigghost2054/Omics-Compendium-Builder-OCB/blob/Pipeline_20200307/images/Figure1.png)
+**Figure 1. The entire transcriptomic compendium pipeline.** The process consists of 6 steps: **1**, Metadata preparation by extracting run information from SRA. **2**, Downloading sequencing data in FASTA format. **3**, Aligning sequences with reference genomes. **4**, Generating gene expression profile for each run given the corresponding sequence direction information (BED) and gene annotation. **5**, Normalizing gene expression profile table. **6**, Different approaches for validating the quality of the generated compendium.
 
-# AutomatedOmicsCompendiumPreparationPipeline
-
-## Purpose
-
-## How to use
+# Installation
+Download the entire repository:
+```
+git clone https://github.com/bigghost2054/Omics-Compendium-Builder-OCB
+```
 
 ## Dependencies
 
-## Architecture
+### Software
+Make sure the following softwares are installed. We recommend to use Anaconda to ensure that they are installed correctly on $PATH.
+```
+python==3.6
+sra-tools==2.10.8
+bowtie==2.3.4
+```
+### Packages
+Make sure to install the following Python packages.
+```
+biopython==1.74
+pandas==0.25
+RSeQC==3.0.0
+HTSeq==0.11.2
+missingpy==0.2.0
+scikit-learn==0.20.1
+matplotlib==3.0.2
+```
 
-## Notes
+# How to Use
+The pipeline consists of two components: Compendium construction and validation. The pipeline builds a compendium using the sample lists and gene annotations provided by users. Then it provides different validation approaches to validate the statistical siginificance and usefulness of the generated compendiums. For more detailed usage, see this [step-by-step tutorial](./STEP-BY-STEP.md).
 
+## Constructing Compendium
 
-This toolkit can prepare the compendium by collecting the samples in <a href="https://www.ncbi.nlm.nih.gov/sra">Sequencing Read Archive (SRA) </a> database.
-(In the future, this toolkit will be capable to process microarray dataset from GEO and ArrayExpress database)
+### Input
+In order to build a compendium, the script needs three input arguments:
+- The path to a sample list file ([Example](./TestFiles/SalmonellaExampleSampleList.csv))
+- The path to a gene annotation file (Example, TODO)
+- An output compendium name.
 
-<div id = "usage">
-<h1> How to use it </h1>
-<ol>
-<li> Download all <a href="#software">necessary software and toolkits</a> </li>
-<li> Add all installed software to <a href="#path_env">PATH environment variables</a> </li>
-<li> Download the entire directory of this project </li>
-<li> Prepare a list of experiment ID you would like to collect (<a href="https://github.com/bigghost2054/AutomatedOmicsCompendiumPreparationPipeline/blob/master/TestFiles/input_exp1.txt">example</a>)</li>
-<li> Download the template files from NCBI genome database in GFF3 format (<a href="https://github.com/bigghost2054/AutomatedOmicsCompendiumPreparationPipeline/blob/master/TestFiles/LT2.gff3">example</a>) </li>
-<li> Prepare a list of templates for alignment (<a href="https://github.com/bigghost2054/AutomatedOmicsCompendiumPreparationPipeline/blob/master/TestFiles/input_template1.txt">example</a>) </li>
-<li> Configure the parameter set in <a href="https://github.com/bigghost2054/AutomatedOmicsCompendiumPreparationPipeline/blob/master/TranscriptomicPipelines/t_utilities/t_parameters.py">t_utilities/t_parameters.py</a></li>
-<li> Execute the main program: <a href="https://github.com/bigghost2054/AutomatedOmicsCompendiumPreparationPipeline/blob/master/TranscriptomicPipelines/transcriptomic_pipeline.py">transcriptomic_pipeline.py</a> &lt;experiment_idlist_file&gt; &lt;template_list_file&gt; </li>
-<li> For the validation part, please refer <a href="#validation">validation part</a></li>
-</ol>
-</div>
+### Output
+This script will generate a directory with specified compendium name and many files in the directory. There are two outputs that are the most important:
+- Normalized data matrix: A CSV table that contains normalized gene expression profiles of all samples. Each row represents different genes and each column represents different samples. The output is stored in '($compendium_name)_NormalizedDataMatrix.csv'.
+- Compendium in binary format: A python object that contains the normalized gene expression table and the recorded parameters. It can be used for optional validation. The output is stored in '($compendium_name)_projectfile.bin'.
 
-<div id = "software">
-<h3>Required Software</h3>
-<ol>
-<li>Python3 (>=3.6.9) or Python2 (>=2.7.1)</li>
-<li>sratoolkit (>=2.9.6) </li>
-</ol>
+### Example
+```
+cd TranscriptomicPipelines
+python build_compendium.py
+    ../TestFiles/SalmonellaExampleSampleList.csv
+    ../TestFiles/GCF_000006945.2_ASM694v2
+    CompendiumExample
+```
 
-<h3>Required Packages</h3>
-<ol>
-<li>biopython (>=1.74)</li>
-<li>pandas (>=0.25.0)</li>
-<li>RSeQC (For Python3: >=3.0.0, For Python2: 2.6.4)</li>
-<li>HTSeq (>=0.11.2) </li>
-</ol>
-</div>
+## Validating Compendium
+The pipeline provides several approaches to ensure the quality of the generated compendiums:
+- Unsupervised validation
+- Unsupervised validation with data matrix
+- Supervised validation with correlation
+- Supervised validation with knowledge capture
+- Supervised validation with published data
 
-<div id = "path_env">
-<h3>PATH environment variable settings</h3>
-You should add all path of installed toolkits to PATH environment variables <br>
-(Especially when you do not have root privileges and you install or compile the software/toolkits manually): <br>
-Here are the example path of those installed software/toolkits:
-<ol>
-<li> sratoolkit: ~/sratoolkit.2.9.6-1-ubuntu64/bin/ </li>
-<li> RSeQC: ~/.local/lib/python2.7/site-packages/RSeQC-2.6.4-py2.7.egg/EGG-INFO/scripts/ </li>
-<li> HTSeq: ~/.local/lib/python2.7/site-packages/HTSeq-0.6.1p1-py2.7-linux-x86_64.egg/EGG-INFO/scripts/</li>
-</ol>
-After you added these path to PATH variable, you should be capable to run the following program in any directory:
-<ul>
-<li>prefetch</li>
-<li>infer_experiment.py</li>
-<li>htseq_count</li>
-</ul>
-If you failed to run these three program, please make sure that you located these three programs correctly and added the correct path to PATH variables before you run this pipeline.
-</div>
+Please refer to [validation totorial](./VALIDATION.md).
 
-<div id = "validation">
-<h3>Validation Part</h3>
-Need to be updated...
-</div>
+# Future Work
+In the future, this toolkit will also be capable to process microarray dataset from GEO and ArrayExpress database.
 
+# Citation
+
+# Authors
+
+# License
+This project is licensed under the Apache 2.0 License - see the [LICENSE](./LICENSE) file for details.
+
+# Acknowledgements
