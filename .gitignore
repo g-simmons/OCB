@@ -22,4 +22,4 @@ pycache.*
 *.gff*
 refgen*
 meta-omics*
-*.docx
+
