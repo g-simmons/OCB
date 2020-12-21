@@ -3,7 +3,7 @@ This toolkit can prepare the transcriptomic compendium, a normalized, format-con
 ![Figure 1. The entire transcriptomic compendium pipeline](https://github.com/bigghost2054/Omics-Compendium-Builder-OCB/blob/Pipeline_20200307/images/Figure1.png)
 **Figure 1. The entire transcriptomic compendium pipeline.** The process consists of 6 steps: **1**, Metadata preparation by extracting run information from SRA. **2**, Downloading sequencing data in FASTA format. **3**, Aligning sequences with reference genomes. **4**, Generating gene expression profile for each run given the corresponding sequence direction information (BED) and gene annotation. **5**, Normalizing gene expression profile table. **6**, Different approaches for validating the quality of the generated compendium.
 
-# Installation (TODO: Rename repo?)
+# Installation
 Download the entire repository:
 ```
 git clone https://github.com/bigghost2054/Omics-Compendium-Builder-OCB
