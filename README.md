@@ -38,7 +38,7 @@ The pipeline consists of two components: Compendium construction and validation.
 ### Input
 In order to build a compendium, the script needs three input arguments:
 - The path to a sample list file ([Example](./TestFiles/SalmonellaExampleSampleList.csv))
-- The path to a gene annotation file (Example, TODO)
+- The path to a gene annotation file.
 - An output compendium name.
 
 ### Output
@@ -57,22 +57,22 @@ python build_compendium.py
 
 ## Validating Compendium
 The pipeline provides several approaches to ensure the quality of the generated compendiums:
-- Unsupervised validation
-- Unsupervised validation with data matrix
-- Supervised validation with correlation
-- Supervised validation with knowledge capture
-- Supervised validation with published data
+- [Unsupervised validation](./VALIDATION.md)
+- [Unsupervised validation with data matrix]()
+- [Supervised validation with correlation](./VALIDATION.md#an-supervised-approach----correlation-validation)
+- [Supervised validation with knowledge capture](./VALIDATION.md#an-supervised-approach----knowledge-capture-validation)
+- [Supervised validation with published data](./VALIDATION.md#an-supervised-approach----published-data-comparison)
 
 Please refer to [validation totorial](./VALIDATION.md).
 
 # Future Work
 In the future, this toolkit will also be capable to process microarray dataset from GEO and ArrayExpress database.
 
-# Citation
-
 # Authors
+- [ChengEn Tan](https://github.com/bigghost2054) as the project lead, main author, and the main developer.
+- [Fangzhou Li](https://github.com/fangzhouli) as the metadata pipeline developer and the code reviewer.
+- [Dr. Minseung Kim](https://github.com/minseven) as the technical advisor.
+- [Dr. Ilias Tagkopoulos](https://github.com/itagkopoulos) as the project supervisor and advisor.
 
 # License
 This project is licensed under the Apache 2.0 License - see the [LICENSE](./LICENSE) file for details.
-
-# Acknowledgements
