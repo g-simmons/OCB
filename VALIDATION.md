@@ -78,7 +78,7 @@ For this Salmonella example compendium with 709 samples, it includes <a href=htt
     <li>The benchmark of the reference compendium (with 26 samples) is about 55.51%.</li>
     <li>The benchmark of the subset of Salmonella example compendium (with 26 samples in the reference compendium) is about 58.7%.</li>
 </ul>
-In conclusion, the benchmark of the subset of Salmonella example compendium is comparable with the benchmark of the refeernece compendium. <br>
+In conclusion, the benchmark of the subset of Salmonella example compendium is comparable with the benchmark of the refernece compendium. <br>
 You may also observed that for the high missing value ratio (0.99), the imputation error of the entire Salmonella example compendium is lower than the reference compendium or the subset compendium. It may implies that capture more samples can capture more information for recovering the missing values in this validation procedure.
 
 ![Figure V3. Benchmark comparison results](https://github.com/bigghost2054/Omics-Compendium-Builder-OCB/blob/master/images/Unsupervised_validation_comparison.png)
