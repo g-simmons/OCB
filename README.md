@@ -58,7 +58,6 @@ python build_compendium.py
 ## Validating Compendium
 The pipeline provides several approaches to ensure the quality of the generated compendiums:
 - [Unsupervised validation](./VALIDATION.md)
-- [Unsupervised validation with data matrix]()
 - [Supervised validation with correlation](./VALIDATION.md#an-supervised-approach----correlation-validation)
 - [Supervised validation with knowledge capture](./VALIDATION.md#an-supervised-approach----knowledge-capture-validation)
 - [Supervised validation with published data](./VALIDATION.md#an-supervised-approach----published-data-comparison)
@@ -76,3 +75,24 @@ In the future, this toolkit will also be capable to process microarray dataset f
 
 # License
 This project is licensed under the Apache 2.0 License - see the [LICENSE](./LICENSE) file for details.
+
+# References
+<ol>
+	<li>Langmead, B. & Salzberg, S. L. Fast gapped-read alignment with Bowtie 2. Nat Methods 9, 357–9 (2012).</li>
+	<li>Anders, S., Pyl, P. T. & Huber, W. HTSeq--a Python framework to work with high-throughput sequencing data. Bioinformatics 31, 166–9 (2015).</li>
+	<li>Guimera, R. V. bcbio-nextgen: Automated, distributed next-gen sequencing pipeline. EMBnet. journal 17, 30 (2011).</li>
+	<li>Stein, L. Generic feature format version 3 (GFF3). Seq. Ontol. Proj 1, (2013).</li>
+	<li>Cock, P. J. A., Fields, C. J., Goto, N., Heuer, M. L. & Rice, P. M. The Sanger FASTQ file format for sequences with quality scores, and the Solexa/Illumina FASTQ variants. Nucleic Acids Res 38, 1767–1771 (2010).</li>
+	<li>Kodama, Y., Shumway, M. & Leinonen, R. The Sequence Read Archive: explosive growth of sequencing data. Nucleic acids research 40, D54–D56 (2011).</li>
+	<li>Cock, P. J. et al. Biopython: freely available Python tools for computational molecular biology and bioinformatics. Bioinformatics 25, 1422–1423 (2009).</li>
+	<li>Lipman, D. J. & Pearson, W. R. Rapid and sensitive protein similarity searches. Science 227, 1435–1441 (1985).</li>
+	<li>Wang, L., Wang, S. & Li, W. RSeQC: quality control of RNA-seq experiments. Bioinformatics 28, 2184–5 (2012).</li>
+	<li>Yoo, A. B., Jette, M. A. & Grondona, M. Slurm: Simple linux utility for resource management. in Workshop on Job Scheduling Strategies for Parallel Processing 44–60 (Springer, 2003).</li>
+	<li>Li, H. et al. The sequence alignment/map format and SAMtools. Bioinformatics 25, 2078–2079 (2009).</li>
+	<li>Stekhoven, D. J. & Buhlmann, P. MissForest--non-parametric missing value imputation for mixed-type data. Bioinformatics 28, 112–8 (2012).</li>
+	<li>Massey Jr, F. J. The Kolmogorov-Smirnov test for goodness of fit. Journal of the American statistical Association 46, 68–78 (1951).</li>
+	<li>Benesty, J., Chen, J., Huang, Y. & Cohen, I. Pearson correlation coefficient. in Noise reduction in speech processing 1–4 (Springer, 2009).</li>
+	<li>Hauke, J. & Kossowski, T. Comparison of values of Pearson’s and Spearman’s correlation coefficients on the same sets of data. Quaestiones geographicae 30, 87–93 (2011).</li>
+	<li>Kroger, C. et al. An infection-relevant transcriptomic compendium for Salmonella enterica Serovar Typhimurium. Cell Host Microbe 14, 683–95 (2013).</li>
+	<li>Colgan, A. M. et al. The Impact of 18 Ancestral and Horizontally-Acquired Regulatory Proteins upon the Transcriptome and sRNA Landscape of Salmonella enterica serovar Typhimurium. PLoS Genet 12, e1006258 (2016).</li>
+</ol>
