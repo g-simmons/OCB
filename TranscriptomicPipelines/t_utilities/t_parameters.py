@@ -181,7 +181,7 @@ class TranscriptomicParameters:
         self.s_bowtie2_parameters_align_mode                                        = self.constants.s_bowtie2_parameters_align_par_end_to_end
         
         #           Bowtie2 -- alignment -- Parallel Configurations
-        self.s_bowtie2_parameters_align_nthreads                                    = 4
+        self.s_bowtie2_parameters_align_nthreads                                    = 1
         
         
         #   RSeQC (For stranded/unstranded detection)================================
@@ -234,7 +234,7 @@ class TranscriptomicParameters:
         self.s_value_extraction_parameters_clean_existed_results                    = True
         
         #Value Extraction (Reference Genome Building)
-        self.s_value_extraction_refbuild_parameters_parallel_mode                    = self.constants.parallel_option_slurm
+        self.s_value_extraction_refbuild_parameters_parallel_mode                    = self.constants.parallel_option_local
         self.s_value_extraction_refbuild_parameters_n_processes_local               = 31
         self.s_value_extraction_refbuild_parameters_n_jobs_slurm                    = 1
         self.s_value_extraction_refbuild_parameters_slurm_num_core_each_node        = 30
@@ -247,7 +247,7 @@ class TranscriptomicParameters:
         
         #Value Extraction (Parallel)=================================================
         self.s_value_extraction_parallel_parameters_pyscript                        = 'script_get_read_counts_run.py'
-        self.s_value_extraction_parallel_parameters_parallel_mode                   = self.constants.parallel_option_slurm
+        self.s_value_extraction_parallel_parameters_parallel_mode                   = self.constants.parallel_option_local
         self.s_value_extraction_parallel_parameters_n_processes_local               = 2
         self.s_value_extraction_parallel_parameters_n_jobs_slurm                    = 6
         self.s_value_extraction_parallel_parameters_slurm_num_core_each_node        = 4
@@ -266,7 +266,7 @@ class TranscriptomicParameters:
         
         #Sample Mapping (Parallel)=================================================
         self.s_sample_mapping_parallel_parameters_pyscript                          = '../script_merge_runs.py'
-        self.s_sample_mapping_parallel_parameters_parallel_mode                     = self.constants.parallel_option_slurm
+        self.s_sample_mapping_parallel_parameters_parallel_mode                     = self.constants.parallel_option_local
         self.s_sample_mapping_parallel_parameters_n_processes_local                 = 2
         self.s_sample_mapping_parallel_parameters_n_jobs_slurm                      = 4
         self.s_sample_mapping_parallel_parameters_slurm_num_core_each_node          = 30
@@ -303,7 +303,7 @@ class TranscriptomicParameters:
         self.p_imputation_rfimpute_parameters_initial_guess_option                  = self.constants.p_imputation_parameters_imputation_options_average
         self.p_imputation_rfimpute_parameters_max_iter                              = 10
         #   Imputation (RFImpute -- Parallel) (Should be used in the future)
-        self.p_imputation_rfimpute_parallel_parameters_parallel_mode                = self.constants.parallel_option_slurm
+        self.p_imputation_rfimpute_parallel_parameters_parallel_mode                = self.constants.parallel_option_local
         self.p_imputation_rfimpute_parallel_parameters_n_feature_local              = 200
         self.p_imputation_rfimpute_parallel_parameters_n_jobs                       = 1
         self.p_imputation_rfimpute_parallel_parameters_n_core_local                 = 32
