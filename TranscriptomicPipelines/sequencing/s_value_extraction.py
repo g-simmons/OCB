@@ -233,19 +233,6 @@ class SequencingExtraction(s_module_template.SequencingSubModule):
 
         self.configure_parameter_set(self.get_general_parameters())
         
-    def do_extract(self):
-        print("gene_annotation")
-        self.configure_parallel_engine_create_bowtie2_index()
-        self.prepare_gene_annotation()
-        self.reset_parallel_engine()
-        
-        print("run extraction")
-        self.configure_parallel_engine()
-        self.prepare_workers()
-        self.submit_job()
-        self.join_results()
-        self.reset_parallel_engine()
-        
     def get_parameters(self):
         return self.parameters
         
@@ -282,6 +269,31 @@ class SequencingExtraction(s_module_template.SequencingSubModule):
 
         self.parallel_parameters.pyscripts = parameter_set.s_value_extraction_parallel_parameters_pyscript
         
+    def configure_parameter_set_parallel(self):
+        parameter_set = self.get_parameter_set()
+        self.parallel_parameters.pyscripts                              = parameter_set.s_value_extraction_parallel_parameters_pyscript
+        
+        self.parallel_parameters.parallel_parameters.parallel_mode      = parameter_set.s_value_extraction_parallel_parameters_parallel_mode
+        self.parallel_parameters.parallel_parameters.n_processes_local  = parameter_set.s_value_extraction_parallel_parameters_n_processes_local
+        self.parallel_parameters.parallel_parameters.n_jobs_slurm       = parameter_set.s_value_extraction_parallel_parameters_n_jobs_slurm
+        
+        self.parallel_parameters.parallel_parameters.parameters_SLURM.par_num_node              = parameter_set.constants.parallel_slurm_parameters_par_num_node
+        self.parallel_parameters.parallel_parameters.parameters_SLURM.num_node                  = 1
+        self.parallel_parameters.parallel_parameters.parameters_SLURM.par_num_core_each_node    = parameter_set.constants.parallel_slurm_parameters_par_num_core_each_node
+        self.parallel_parameters.parallel_parameters.parameters_SLURM.num_core_each_node        = parameter_set.s_value_extraction_parallel_parameters_slurm_num_core_each_node
+        self.parallel_parameters.parallel_parameters.parameters_SLURM.par_time_limit            = parameter_set.constants.parallel_slurm_parameters_par_time_limit
+        self.parallel_parameters.parallel_parameters.parameters_SLURM.time_limit_hr             = parameter_set.s_value_extraction_parallel_parameters_slurm_time_limit_hr
+        self.parallel_parameters.parallel_parameters.parameters_SLURM.time_limit_min            = parameter_set.s_value_extraction_parallel_parameters_slurm_time_limit_min
+        self.parallel_parameters.parallel_parameters.parameters_SLURM.par_job_name              = parameter_set.constants.parallel_slurm_parameters_par_job_name
+
+        self.parallel_parameters.parallel_parameters.parameters_SLURM.par_output                = parameter_set.constants.parallel_slurm_parameters_par_output
+        self.parallel_parameters.parallel_parameters.parameters_SLURM.output_ext                = parameter_set.s_value_extraction_parallel_parameters_slurm_output_ext
+        self.parallel_parameters.parallel_parameters.parameters_SLURM.par_error                 = parameter_set.constants.parallel_slurm_parameters_par_error
+        self.parallel_parameters.parallel_parameters.parameters_SLURM.error_ext                 = parameter_set.s_value_extraction_parallel_parameters_slurm_error_ext
+        
+        self.parallel_parameters.parallel_parameters.parameters_SLURM.shell_script_path         = parameter_set.s_value_extraction_parallel_parameters_slurm_shell_script_path
+        
+    
     def get_results(self):
         return self.results
         
@@ -452,6 +464,7 @@ class SequencingExtraction(s_module_template.SequencingSubModule):
         return command
         
     def submit_job(self):
+        self.configure_parameter_set_parallel()
         if self.parallel_parameters.parallel_parameters.parallel_mode == self.parallel_parameters.parallel_parameters.parallel_option.NONE.value:
             for exp in self.s_retrieval_results.mapping_experiment_runs:
                 for run in self.s_retrieval_results.mapping_experiment_runs[exp]:
@@ -465,13 +478,6 @@ class SequencingExtraction(s_module_template.SequencingSubModule):
             for exp in self.s_retrieval_results.mapping_experiment_runs:
                 for run in self.s_retrieval_results.mapping_experiment_runs[exp]:
                     if self.parameters.skip_all == False or self.check_existed_results(run) == False:
-                        print(self.parameters.skip_all)
-                        print(run)
-                        print(self.check_existed_results(run))
-                        print(self.get_worker_results(run))
-                        print(self.get_worker_results_file(run))
-                        raise('?')
-                    
                         self.prepare_worker_file(run)
                         commands.append(self.get_local_submit_command(run))
                     

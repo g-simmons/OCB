@@ -245,10 +245,15 @@ class SequencingPipeline(s_module_template.SequencingModule):
         self.s_data_retrieval.filter_entry(platform_id_remove, series_id_remove, experiment_id_remove, run_id_remove)
         
         #Parallel (run level)
+        self.s_value_extraction.configure_parallel_engine_create_bowtie2_index()
         self.s_value_extraction.prepare_gene_annotation()
+        self.s_value_extraction.reset_parallel_engine()
+        
+        self.s_value_extraction.configure_parallel_engine()
         self.s_value_extraction.prepare_workers()
         self.s_value_extraction.submit_job()
         self.s_value_extraction.join_results()
+        self.s_value_extraction.reset_parallel_engine()
         
         #Parallel (exp level)
         self.s_sample_mapping.prepare_workers()
