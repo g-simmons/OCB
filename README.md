@@ -49,9 +49,9 @@ This script will generate a directory with specified compendium name and many fi
 ### Example
 ```
 cd TranscriptomicPipelines
-python build_compendium_script.py
-    ../TestFiles/SalmonellaExampleSampleList.csv
-    ../TestFiles/GCF_000006945.2_ASM694v2
+python build_compendium_script.py \
+    ../TestFiles/SalmonellaExampleSampleList.csv \
+    ../TestFiles/GCF_000006945.2_ASM694v2 \
     CompendiumExample
 ```
 
